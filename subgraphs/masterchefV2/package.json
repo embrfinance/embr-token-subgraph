@@ -14,6 +14,7 @@
         "deploy:mainnet": "graph deploy masterchefv2 subgraph.yaml",
 
         "prepare:mainnet": "mustache config/mainnet.json template.yaml > subgraph.yaml",
+        "prepare:fuji": "mustache config/fuji.json template.yaml > subgraph.yaml",
         "prepare:xdai": "."
     }
 }

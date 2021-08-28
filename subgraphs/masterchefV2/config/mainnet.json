@@ -1,5 +1,5 @@
 {
-  "network": "fuji",
-  "address": "0x42BaFb14a27295A6e9Ff2c806B8F367E273BD2e4",
-  "startBlock": "888629"
+  "network": "mainnet",
+  "address": "0xEF0881eC094552b2e128Cf945EF17a6752B4Ec5d",
+  "startBlock": "12428169"
 }

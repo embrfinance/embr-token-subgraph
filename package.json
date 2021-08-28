@@ -16,10 +16,11 @@
     "prepare:matic": "yarn workspaces run prepare:matic",
     "prepare:rinkeby": "yarn workspaces run prepare:rinkeby",
     "prepare:ropsten": "yarn workspaces run prepare:ropsten",
-    "prepare:xdai": "yarn workspaces run prepare:xdai"
+    "prepare:xdai": "yarn workspaces run prepare:xdai",
+    "prepare:fuji": "yarn workspaces run prepare:fuji"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.20.0",
+    "@graphprotocol/graph-cli": "^0.21.1",
     "@graphprotocol/graph-ts": "^0.20.0",
     "@sushiswap/core": "^1.4.2",
     "@sushiswap/prettier-config": "^0.1.0",

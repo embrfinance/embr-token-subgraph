@@ -81,14 +81,14 @@ export function logUpdatePool(event: LogUpdatePool): void {
     event.params.pid.toString(),
     event.params.lastRewardBlock.toString(),
     event.params.lpSupply.toString(),
-    event.params.accSushiPerShare.toString()
+    event.params.accBeetxPerShare.toString()
   ])
 
   const masterChef = getMasterChef(event.block)
   const pool = getPool(event.params.pid, event.block)
   updateRewarder(Address.fromString(pool.rewarder))
 
-  pool.accSushiPerShare = event.params.accSushiPerShare
+  pool.accBeetxPerShare = event.params.accBeetxPerShare
   pool.lastRewardBlock = event.params.lastRewardBlock
   pool.save()
 }
@@ -109,7 +109,7 @@ export function deposit(event: Deposit): void {
   pool.save()
 
   user.amount = user.amount.plus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accSushiPerShare).div(ACC_SUSHI_PRECISION))
+  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accBeetxPerShare).div(ACC_SUSHI_PRECISION))
   user.save()
 }
 
@@ -129,7 +129,7 @@ export function withdraw(event: Withdraw): void {
   pool.save()
 
   user.amount = user.amount.minus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accSushiPerShare).div(ACC_SUSHI_PRECISION))
+  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accBeetxPerShare).div(ACC_SUSHI_PRECISION))
   user.save()
 }
 
@@ -160,9 +160,9 @@ export function harvest(event: Harvest): void {
   const pool = getPool(event.params.pid, event.block)
   const user = getUser(event.params.user, event.params.pid, event.block)
 
-  let accumulatedSushi = user.amount.times(pool.accSushiPerShare).div(ACC_SUSHI_PRECISION)
+  const accumulatedSushi = user.amount.times(pool.accBeetxPerShare).div(ACC_SUSHI_PRECISION)
 
   user.rewardDebt = accumulatedSushi
-  user.sushiHarvested = user.sushiHarvested.plus(event.params.amount)
+  user.beetxHarvested = user.beetxHarvested.plus(event.params.amount)
   user.save()
 }

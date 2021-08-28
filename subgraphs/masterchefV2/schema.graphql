@@ -27,7 +27,7 @@ type Pool @entity {
 
   allocPoint: BigInt!
   lastRewardBlock: BigInt!
-  accSushiPerShare: BigInt!
+  accBeetxPerShare: BigInt!
 
   slpBalance: BigInt!
 
@@ -57,7 +57,7 @@ type User @entity {
 
   amount: BigInt!
   rewardDebt: BigInt!
-  sushiHarvested: BigInt!
+  beetxHarvested: BigInt!
 
   timestamp: BigInt!
   block: BigInt!

@@ -8,6 +8,7 @@ export function getMasterChef(block: ethereum.Block): MasterChef {
   if (masterChef === null) {
     masterChef = new MasterChef(dataSource.address().toHex())
     masterChef.totalAllocPoint = BIG_INT_ZERO
+    masterChef.beetxPerBlock = BIG_INT_ZERO
     masterChef.poolCount = BIG_INT_ZERO
   }
 

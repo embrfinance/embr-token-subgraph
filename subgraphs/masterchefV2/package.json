@@ -7,9 +7,9 @@
     "scripts": {
         "codegen": "graph codegen subgraph.yaml",
         "build": "graph build subgraph.yaml",
-        "create-local": "graph create --node http://localhost:8020/ /sushiswap/sushiswap",
-        "remove-local": "graph remove --node http://localhost:8020/ /sushiswap/sushiswap",
-        "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 /sushiswap/sushiswap",
+        "create-local": "graph create --node http://localhost:8020/",
+        "remove-local": "graph remove --node http://localhost:8020/ beetx-subgraph",
+        "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 beetx-subgraph",
 
         "deploy:mainnet": "graph deploy masterchefv2 subgraph.yaml",
 

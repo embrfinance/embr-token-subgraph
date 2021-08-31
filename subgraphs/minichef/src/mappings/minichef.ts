@@ -1,5 +1,5 @@
 import {
-  ACC_SUSHI_PRECISION,
+  ACC_BEETX_PRECISION,
   BIG_DECIMAL_1E12,
   BIG_DECIMAL_1E18,
   BIG_DECIMAL_ZERO,
@@ -119,7 +119,7 @@ export function deposit(event: Deposit): void {
   pool.save()
 
   user.amount = user.amount.plus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accSushiPerShare).div(ACC_SUSHI_PRECISION))
+  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accSushiPerShare).div(ACC_BEETX_PRECISION))
   user.save()
 }
 
@@ -139,7 +139,7 @@ export function withdraw(event: Withdraw): void {
   pool.save()
 
   user.amount = user.amount.minus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accSushiPerShare).div(ACC_SUSHI_PRECISION))
+  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accSushiPerShare).div(ACC_BEETX_PRECISION))
   user.save()
 }
 
@@ -170,7 +170,7 @@ export function harvest(event: Harvest): void {
   const pool = getPool(event.params.pid, event.block)
   const user = getUser(event.params.user, event.params.pid, event.block)
 
-  let accumulatedSushi = user.amount.times(pool.accSushiPerShare).div(ACC_SUSHI_PRECISION)
+  let accumulatedSushi = user.amount.times(pool.accSushiPerShare).div(ACC_BEETX_PRECISION)
 
   user.rewardDebt = accumulatedSushi
   user.sushiHarvested = user.sushiHarvested.plus(event.params.amount)

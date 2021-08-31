@@ -19,9 +19,6 @@ export function getUser(address: Address, pid: BigInt, block: ethereum.Block): U
     user.amount = BIG_INT_ZERO
     user.rewardDebt = BIG_INT_ZERO
     user.beetxHarvested = BIG_INT_ZERO
-
-    pool.userCount = pool.userCount.plus(BIG_INT_ONE)
-    pool.save()
   }
 
   user.timestamp = block.timestamp

@@ -5,7 +5,7 @@ import {
   Harvest,
   LogPoolAddition,
   LogSetPool,
-  LogUpdatePool
+  LogUpdatePool, UpdateEmissionRate, SetDevAddress
 } from '../../generated/MasterChefV2/MasterChefV2'
 
 import { Address, BigDecimal, BigInt, dataSource, ethereum, log } from '@graphprotocol/graph-ts'
@@ -17,7 +17,7 @@ import {
   BIG_INT_ONE_DAY_SECONDS,
   BIG_INT_ZERO,
   MASTER_CHEF_V2_ADDRESS,
-  ACC_SUSHI_PRECISION
+  ACC_BEETX_PRECISION
 } from 'const'
 import { MasterChef, Pool, User, Rewarder } from '../../generated/schema'
 
@@ -76,6 +76,17 @@ export function logSetPool(event: LogSetPool): void {
   pool.save()
 }
 
+export function updateEmissionRate(event: UpdateEmissionRate): void {
+  log.info('[MasterChef] Log update emission rate {} {}', [
+    event.params.user.toString(),
+    event.params._joePerSec.toString()
+  ])
+
+  const masterChef = getMasterChef(event.block)
+  masterChef.beetxPerBlock = event.params._joePerSec
+  masterChef.save()
+}
+
 export function logUpdatePool(event: LogUpdatePool): void {
   log.info('[MasterChefV2] Log Update Pool {} {} {} {}', [
     event.params.pid.toString(),
@@ -106,10 +117,13 @@ export function deposit(event: Deposit): void {
   const user = getUser(event.params.to, event.params.pid, event.block)
 
   pool.slpBalance = pool.slpBalance.plus(event.params.amount)
+  if(user.amount === BIG_INT_ZERO && event.params.amount > BIG_INT_ZERO) {
+    pool.userCount = pool.userCount.plus(BIG_INT_ONE)
+  }
   pool.save()
 
   user.amount = user.amount.plus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accBeetxPerShare).div(ACC_SUSHI_PRECISION))
+  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accBeetxPerShare).div(ACC_BEETX_PRECISION))
   user.save()
 }
 
@@ -125,12 +139,16 @@ export function withdraw(event: Withdraw): void {
   const pool = getPool(event.params.pid, event.block)
   const user = getUser(event.params.user, event.params.pid, event.block)
 
+  user.amount = user.amount.minus(event.params.amount)
+  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accBeetxPerShare).div(ACC_BEETX_PRECISION))
+  user.save()
+
   pool.slpBalance = pool.slpBalance.minus(event.params.amount)
+  if(user.amount === BIG_INT_ZERO) {
+    pool.userCount = pool.userCount.minus(BIG_INT_ONE)
+  }
   pool.save()
 
-  user.amount = user.amount.minus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accBeetxPerShare).div(ACC_SUSHI_PRECISION))
-  user.save()
 }
 
 export function emergencyWithdraw(event: EmergencyWithdraw): void {
@@ -147,6 +165,10 @@ export function emergencyWithdraw(event: EmergencyWithdraw): void {
   user.amount = BIG_INT_ZERO
   user.rewardDebt = BIG_INT_ZERO
   user.save()
+
+  const pool = getPool(event.params.pid, event.block)
+  pool.userCount = pool.userCount.minus(BIG_INT_ONE)
+  pool.save()
 }
 
 export function harvest(event: Harvest): void {
@@ -160,7 +182,7 @@ export function harvest(event: Harvest): void {
   const pool = getPool(event.params.pid, event.block)
   const user = getUser(event.params.user, event.params.pid, event.block)
 
-  const accumulatedSushi = user.amount.times(pool.accBeetxPerShare).div(ACC_SUSHI_PRECISION)
+  const accumulatedSushi = user.amount.times(pool.accBeetxPerShare).div(ACC_BEETX_PRECISION)
 
   user.rewardDebt = accumulatedSushi
   user.beetxHarvested = user.beetxHarvested.plus(event.params.amount)

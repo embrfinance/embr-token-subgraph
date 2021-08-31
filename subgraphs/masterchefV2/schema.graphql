@@ -2,10 +2,11 @@ type MasterChef @entity {
   # Contract address
   id: ID!
 
-  #owner: Bytes!
-  #migrator: Bytes!
+#  owner: Bytes!
+#  devAddress: Bytes!
+#  treasuryAddress: Bytes!
 
-  #sushiPerBlock: BgInt! not needed till fully migrated over
+  beetxPerBlock: BigInt!
   totalAllocPoint: BigInt!
 
   pools: [Pool!] @derivedFrom(field: "masterChef")

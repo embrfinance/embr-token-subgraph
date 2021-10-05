@@ -3,12 +3,7 @@
     "inputs": [
       {
         "internalType": "contract BeethovenxToken",
-        "name": "_beethovenx",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_devAddress",
+        "name": "_beets",
         "type": "address"
       },
       {
@@ -18,22 +13,12 @@
       },
       {
         "internalType": "uint256",
-        "name": "_beetxPerBlock",
+        "name": "_beetsPerBlock",
         "type": "uint256"
       },
       {
         "internalType": "uint256",
         "name": "_startBlock",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_devPercent",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_treasuryPercent",
         "type": "uint256"
       }
     ],
@@ -213,7 +198,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "accBeetxPerShare",
+        "name": "accBeetsPerShare",
         "type": "uint256"
       }
     ],
@@ -255,7 +240,7 @@
         "type": "address"
       }
     ],
-    "name": "SetDevAddress",
+    "name": "SetTreasuryAddress",
     "type": "event"
   },
   {
@@ -270,7 +255,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_joePerSec",
+        "name": "_beetsPerSec",
         "type": "uint256"
       }
     ],
@@ -309,6 +294,32 @@
     "type": "event"
   },
   {
+    "inputs": [],
+    "name": "POOL_PERCENTAGE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "TREASURY_PERCENTAGE",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -333,7 +344,7 @@
   },
   {
     "inputs": [],
-    "name": "beetx",
+    "name": "beets",
     "outputs": [
       {
         "internalType": "contract BeethovenxToken",
@@ -346,7 +357,7 @@
   },
   {
     "inputs": [],
-    "name": "beetxPerBlock",
+    "name": "beetsPerBlock",
     "outputs": [
       {
         "internalType": "uint256",
@@ -370,7 +381,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "address payable",
+        "internalType": "address",
         "name": "_to",
         "type": "address"
       }
@@ -378,45 +389,6 @@
     "name": "deposit",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_devaddr",
-        "type": "address"
-      }
-    ],
-    "name": "dev",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "devAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "devPercent",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -451,6 +423,19 @@
       }
     ],
     "name": "harvest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_to",
+        "type": "address"
+      }
+    ],
+    "name": "harvestAll",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -507,7 +492,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingBeetx",
+    "name": "pendingBeets",
     "outputs": [
       {
         "internalType": "uint256",
@@ -540,7 +525,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "accBeetxPerShare",
+        "name": "accBeetsPerShare",
         "type": "uint256"
       }
     ],
@@ -615,32 +600,6 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_newDevPercent",
-        "type": "uint256"
-      }
-    ],
-    "name": "setDevPercent",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_newTreasuryPercent",
-        "type": "uint256"
-      }
-    ],
-    "name": "setTreasuryPercent",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "startBlock",
     "outputs": [
@@ -706,23 +665,10 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "treasuryPercent",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_beetxPerBlock",
+        "name": "_beetsPerBlock",
         "type": "uint256"
       }
     ],
@@ -755,7 +701,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "accBeetxPerShare",
+            "name": "accBeetsPerShare",
             "type": "uint256"
           }
         ],

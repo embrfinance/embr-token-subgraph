@@ -1,6 +1,6 @@
 specVersion: 0.0.3
 description: MasterChefV2
-repository: https://github.com/sushiswap/sushiswap-subgraph
+repository: https://github.com/beethovenxfi/beethovenx-token-subgraph
 schema:
   file: ./schema.graphql
 dataSources:

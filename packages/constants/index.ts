@@ -36,7 +36,9 @@ export const MASTER_CHEF_START_BLOCK = BigInt.fromI32(10750000);
 export const UNISWAP_SUSHI_ETH_PAIR_FIRST_LIQUDITY_BLOCK =
   BigInt.fromI32(10750005);
 
-export const ACC_SUSHI_PRECISION = BigInt.fromString("1000000000000");
+export const ACC_BEETX_PRECISION = BigInt.fromString("1000000000000");
+
+export const MASTER_CHEF_INITIAL_BEETS_PER_BLOCK = BigInt.fromString("5050000000000000000");
 
 export const BENTOBOX_DEPOSIT = "deposit";
 

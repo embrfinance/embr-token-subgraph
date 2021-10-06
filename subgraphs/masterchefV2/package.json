@@ -15,10 +15,5 @@
         "prepare:rinkeby": "mustache config/rinkeby.json template.yaml > subgraph.yaml",
         "prepare:xdai": "."
     },
-    "dependencies": {
-        "ethers": "^5.4.7",
-        "hardhat": "^2.6.5",
-        "hardhat-deploy": "^0.9.3",
-        "hardhat-deploy-ethers": "^0.3.0-beta.11"
-    }
+    "dependencies": {}
 }

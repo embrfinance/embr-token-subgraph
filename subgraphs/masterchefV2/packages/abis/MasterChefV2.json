@@ -430,6 +430,11 @@
   {
     "inputs": [
       {
+        "internalType": "uint256[]",
+        "name": "_pids",
+        "type": "uint256[]"
+      },
+      {
         "internalType": "address",
         "name": "_to",
         "type": "address"
@@ -460,7 +465,13 @@
     "type": "function"
   },
   {
-    "inputs": [],
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "pids",
+        "type": "uint256[]"
+      }
+    ],
     "name": "massUpdatePools",
     "outputs": [],
     "stateMutability": "nonpayable",

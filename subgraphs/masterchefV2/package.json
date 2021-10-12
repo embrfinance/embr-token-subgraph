@@ -10,9 +10,14 @@
         "create-local": "graph create --node http://localhost:8020/",
         "remove-local": "graph remove --node http://localhost:8020/ beetx-subgraph",
         "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 beetx-subgraph",
+        "deploy:fantom-eu": "graph deploy masterchef subgraph.yaml --ipfs  http://ec2-18-159-209-6.eu-central-1.compute.amazonaws.com:5001 --node  http://ec2-18-159-209-6.eu-central-1.compute.amazonaws.com:8020/",
+        "deploy:fantom-us": "graph deploy masterchef subgraph.yaml --ipfs  http://ec2-54-177-253-133.us-west-1.compute.amazonaws.com:5001 --node  http://ec2-54-177-253-133.us-west-1.compute.amazonaws.com:8020/",
+        "deploy:fantom-canada": "graph deploy masterchef subgraph.yaml --ipfs  http://ec2-99-79-41-64.ca-central-1.compute.amazonaws.com:5001 --node  http://ec2-99-79-41-64.ca-central-1.compute.amazonaws.com:8020/",
+        "deploy:fantom-seoul": "graph deploy masterchef subgraph.yaml --ipfs  http://ec2-3-35-233-155.ap-northeast-2.compute.amazonaws.com:5001 --node  http://ec2-3-35-233-155.ap-northeast-2.compute.amazonaws.com:8020/",
         "deploy:mainnet": "graph deploy masterchefv2 subgraph.yaml",
         "prepare:mainnet": "mustache config/mainnet.json template.yaml > subgraph.yaml",
         "prepare:rinkeby": "mustache config/rinkeby.json template.yaml > subgraph.yaml",
+        "prepare:fantom": "mustache config/fantom.json template.yaml > subgraph.yaml",
         "prepare:xdai": "."
     },
     "dependencies": {}

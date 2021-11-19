@@ -1,11 +1,11 @@
 specVersion: 0.0.3
 description: Bar
-repository: https://github.com/sushiswap/sushiswap-subgraph
+repository: https://github.com/beethovenxfi/beethovenx-token-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: SushiBar
+    name: BeetsBar
     network: {{ network }}
     source:
       address: '{{ address }}'
@@ -20,12 +20,16 @@ dataSources:
         - User
       abis:
         - name: Bar
-          file: ../../node_modules/@sushiswap/core/build/abi/SushiBar.json
-        - name: SushiToken
-          file: ../../node_modules/@sushiswap/core/build/abi/SushiToken.json
-        - name: Pair
-          file: ../../node_modules/@sushiswap/core/build/abi/UniswapV2Pair.json
+          file: ./packages/abis/BeetsBar.json
+        - name: ERC20
+          file: ./packages/abis/ERC20.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: transfer
-      file: ./src/bar.ts
+        - event: Enter(indexed address,uint256,uint256)
+          handler: enter
+        - event: Leave(indexed address,uint256,uint256)
+          handler: leave
+        - event: ShareRevenue(uint256)
+          handler: shareRevenue
+      file: ./src/mappings/bar.ts

@@ -9,8 +9,10 @@ export function getBar(block: ethereum.Block): Bar {
   if (bar === null) {
     const contract: BarContract = BarContract.bind(dataSource.address());
     bar = new Bar(dataSource.address().toHex());
+    bar.address = dataSource.address();
     bar.totalSupply = BIG_DECIMAL_ZERO;
-    bar.vestingTokenSupply = BIG_DECIMAL_ZERO;
+    bar.vestingTokenStaked = BIG_DECIMAL_ZERO;
+    bar.sharedVestingTokenRevenue = BIG_DECIMAL_ZERO;
     bar.fBeetsMinted = BIG_DECIMAL_ZERO;
     bar.fBeetsBurned = BIG_DECIMAL_ZERO;
     bar.ratio = BIG_DECIMAL_ZERO;

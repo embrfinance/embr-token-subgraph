@@ -3,6 +3,8 @@ type Bar @entity {
   # Contract address
   id: ID!
 
+  address: Bytes!
+
   # Decimals
   decimals: Int!
 
@@ -27,7 +29,9 @@ type Bar @entity {
   # fBeets burned
   fBeetsBurned: BigDecimal!
 
-  vestingTokenSupply: BigDecimal!
+  vestingTokenStaked: BigDecimal!
+
+  sharedVestingTokenRevenue: BigDecimal!
 
   # Users in the bar
   users: [User!]! @derivedFrom(field: "bar")
@@ -53,6 +57,8 @@ type User @entity {
   vestingTokenOut: BigDecimal!
 
   vestingTokenIn: BigDecimal!
+
+  vestingTokenHarvested: BigDecimal!
 
   block: BigInt!
 

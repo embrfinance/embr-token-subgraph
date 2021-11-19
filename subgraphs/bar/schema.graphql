@@ -58,20 +58,3 @@ type User @entity {
 
   timestamp: BigInt!
 }
-
-# History
-enum Timeframe {
- MONTH
-}
-
-type History @entity {
-  id: ID!
-  date: Int!
-  timeframe: Timeframe!
-  vestingTokenStaked: BigDecimal!
-  vestingTokenHarvested: BigDecimal!
-  fBeetsMinted: BigDecimal!
-  fBeetsBurned: BigDecimal!
-  fBeetsSupply: BigDecimal!
-  ratio: BigDecimal!
-}

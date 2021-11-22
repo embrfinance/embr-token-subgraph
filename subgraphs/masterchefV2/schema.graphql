@@ -6,7 +6,7 @@ type MasterChef @entity {
 #  devAddress: Bytes!
 #  treasuryAddress: Bytes!
 
-  beetsPerBlock: BigInt!
+  embrPerBlock: BigInt!
   totalAllocPoint: BigInt!
 
   pools: [Pool!] @derivedFrom(field: "masterChef")
@@ -28,7 +28,7 @@ type Pool @entity {
 
   allocPoint: BigInt!
   lastRewardBlock: BigInt!
-  accBeetsPerShare: BigInt!
+  accEmbrPerShare: BigInt!
 
   slpBalance: BigInt!
 
@@ -58,7 +58,7 @@ type User @entity {
 
   amount: BigInt!
   rewardDebt: BigInt!
-  beetsHarvested: BigInt!
+  embrHarvested: BigInt!
 
   timestamp: BigInt!
   block: BigInt!

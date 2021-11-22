@@ -1,6 +1,6 @@
 specVersion: 0.0.3
 description: MasterChefV2
-repository: https://github.com/beethovenxfi/beethovenx-token-subgraph
+repository: https://github.com/embrfinance/embr-token-subgraph
 schema:
   file: ./schema.graphql
 dataSources:

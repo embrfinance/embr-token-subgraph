@@ -38,7 +38,7 @@ export const UNISWAP_SUSHI_ETH_PAIR_FIRST_LIQUDITY_BLOCK =
 
 export const ACC_BEETX_PRECISION = BigInt.fromString("1000000000000");
 
-export const MASTER_CHEF_INITIAL_BEETS_PER_BLOCK = BigInt.fromString("5050000000000000000");
+export const MASTER_CHEF_INITIAL_EMBR_PER_BLOCK = BigInt.fromString("5050000000000000000");
 
 export const BENTOBOX_DEPOSIT = "deposit";
 
@@ -67,7 +67,7 @@ export const MASTER_CHEF_ADDRESS = Address.fromString(
 );
 
 export const MASTER_CHEF_V2_ADDRESS = Address.fromString(
-  "0xef0881ec094552b2e128cf945ef17a6752b4ec5d"
+  "0xB6a3C0Ddc88C69F3A4a28A1AE1FE2430f0aBCE54"
 );
 
 export const SUSHI_BAR_ADDRESS = Address.fromString("0xb9D8Cb0E48acfa05550a8dA7788e51Ac85e03F62");

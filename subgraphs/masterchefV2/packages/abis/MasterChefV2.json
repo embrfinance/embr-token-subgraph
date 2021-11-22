@@ -2,8 +2,8 @@
   {
     "inputs": [
       {
-        "internalType": "contract BeethovenxToken",
-        "name": "_beets",
+        "internalType": "contract EmbrToken",
+        "name": "_embr",
         "type": "address"
       },
       {
@@ -13,7 +13,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_beetsPerBlock",
+        "name": "_embrPerBlock",
         "type": "uint256"
       },
       {
@@ -198,7 +198,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "accBeetsPerShare",
+        "name": "accEmbrPerShare",
         "type": "uint256"
       }
     ],
@@ -255,7 +255,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_beetsPerSec",
+        "name": "_embrPerSec",
         "type": "uint256"
       }
     ],
@@ -344,10 +344,10 @@
   },
   {
     "inputs": [],
-    "name": "beets",
+    "name": "embr",
     "outputs": [
       {
-        "internalType": "contract BeethovenxToken",
+        "internalType": "contract EmbrToken",
         "name": "",
         "type": "address"
       }
@@ -357,7 +357,7 @@
   },
   {
     "inputs": [],
-    "name": "beetsPerBlock",
+    "name": "embrPerBlock",
     "outputs": [
       {
         "internalType": "uint256",
@@ -503,7 +503,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingBeets",
+    "name": "pendingEmbr",
     "outputs": [
       {
         "internalType": "uint256",
@@ -536,7 +536,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "accBeetsPerShare",
+        "name": "accEmbrPerShare",
         "type": "uint256"
       }
     ],
@@ -679,7 +679,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_beetsPerBlock",
+        "name": "_embrPerBlock",
         "type": "uint256"
       }
     ],
@@ -712,11 +712,11 @@
           },
           {
             "internalType": "uint256",
-            "name": "accBeetsPerShare",
+            "name": "accEmbrPerShare",
             "type": "uint256"
           }
         ],
-        "internalType": "struct BeethovenxMasterChef.PoolInfo",
+        "internalType": "struct EmbrMasterChef.PoolInfo",
         "name": "pool",
         "type": "tuple"
       }

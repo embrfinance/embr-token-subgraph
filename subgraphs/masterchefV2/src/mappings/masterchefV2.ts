@@ -62,11 +62,11 @@ export function logSetPool(event: LogSetPool): void {
 export function updateEmissionRate(event: UpdateEmissionRate): void {
   log.info('[MasterChef] Log update emission rate {} {}', [
     event.params.user.toString(),
-    event.params._beetsPerSec.toString()
+    event.params._embrPerSec.toString()
   ])
 
   const masterChef = getMasterChef(event.block)
-  masterChef.beetsPerBlock = event.params._beetsPerSec
+  masterChef.embrPerBlock = event.params._embrPerSec
   masterChef.save()
 }
 
@@ -75,14 +75,14 @@ export function logUpdatePool(event: LogUpdatePool): void {
     event.params.pid.toString(),
     event.params.lastRewardBlock.toString(),
     event.params.lpSupply.toString(),
-    event.params.accBeetsPerShare.toString()
+    event.params.accEmbrPerShare.toString()
   ])
 
   const masterChef = getMasterChef(event.block)
   const pool = getPool(event.params.pid, event.block)
   updateRewarder(Address.fromString(pool.rewarder))
 
-  pool.accBeetsPerShare = event.params.accBeetsPerShare
+  pool.accEmbrPerShare = event.params.accEmbrPerShare
   pool.lastRewardBlock = event.params.lastRewardBlock
   pool.save()
 }
@@ -106,7 +106,7 @@ export function deposit(event: Deposit): void {
   pool.save()
 
   user.amount = user.amount.plus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accBeetsPerShare).div(ACC_BEETX_PRECISION))
+  user.rewardDebt = user.rewardDebt.plus(event.params.amount.times(pool.accEmbrPerShare).div(ACC_BEETX_PRECISION))
   user.save()
 }
 
@@ -123,7 +123,7 @@ export function withdraw(event: Withdraw): void {
   const user = getUser(event.params.user, event.params.pid, event.block)
 
   user.amount = user.amount.minus(event.params.amount)
-  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accBeetsPerShare).div(ACC_BEETX_PRECISION))
+  user.rewardDebt = user.rewardDebt.minus(event.params.amount.times(pool.accEmbrPerShare).div(ACC_BEETX_PRECISION))
   user.save()
 
   pool.slpBalance = pool.slpBalance.minus(event.params.amount)
@@ -165,9 +165,9 @@ export function harvest(event: Harvest): void {
   const pool = getPool(event.params.pid, event.block)
   const user = getUser(event.params.user, event.params.pid, event.block)
 
-  const accumulatedSushi = user.amount.times(pool.accBeetsPerShare).div(ACC_BEETX_PRECISION)
+  const accumulatedSushi = user.amount.times(pool.accEmbrPerShare).div(ACC_BEETX_PRECISION)
 
   user.rewardDebt = accumulatedSushi
-  user.beetsHarvested = user.beetsHarvested.plus(event.params.amount)
+  user.embrHarvested = user.embrHarvested.plus(event.params.amount)
   user.save()
 }

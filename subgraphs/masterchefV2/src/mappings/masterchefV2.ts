@@ -66,7 +66,7 @@ export function updateEmissionRate(event: UpdateEmissionRate): void {
   ])
 
   const masterChef = getMasterChef(event.block)
-  masterChef.embrPerBlock = event.params._embrPerSec
+  masterChef.embrPerSec = event.params._embrPerSec
   masterChef.save()
 }
 

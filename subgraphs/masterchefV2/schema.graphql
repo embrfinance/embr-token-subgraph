@@ -6,7 +6,7 @@ type MasterChef @entity {
 #  devAddress: Bytes!
 #  treasuryAddress: Bytes!
 
-  embrPerBlock: BigInt!
+  embrPerSec: BigInt!
   totalAllocPoint: BigInt!
 
   pools: [Pool!] @derivedFrom(field: "masterChef")

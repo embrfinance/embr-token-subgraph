@@ -1,6 +1,6 @@
 import { Address, BigDecimal, BigInt } from "@graphprotocol/graph-ts";
 
-export const NULL_CALL_RESULT_VALUE =
+export const NULL_CALL_RESULT_VALUE =MASTER_CHEF_INITIAL_EMBR_PER_BLOCK
   "0x0000000000000000000000000000000000000000000000000000000000000001";
 
 export const ADDRESS_ZERO = Address.fromString(
@@ -38,7 +38,7 @@ export const UNISWAP_SUSHI_ETH_PAIR_FIRST_LIQUDITY_BLOCK =
 
 export const ACC_BEETX_PRECISION = BigInt.fromString("1000000000000");
 
-export const MASTER_CHEF_INITIAL_EMBR_PER_BLOCK = BigInt.fromString("5050000000000000000");
+export const MASTER_CHEF_INITIAL_EMBR_PER_BLOCK = BigInt.fromString("505000000000000000");
 
 export const BENTOBOX_DEPOSIT = "deposit";
 

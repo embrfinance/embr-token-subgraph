@@ -7,6 +7,8 @@
     "scripts": {
         "codegen": "graph codegen subgraph.yaml",
         "build": "graph build subgraph.yaml",
+        "auth": "graph auth",
+        "deploy:fuji": "graph deploy embrfinance/embr-masterchef-fuji subgraph.yaml",
         "create-local": "graph create --node http://localhost:8020/",
         "remove-local": "graph remove --node http://localhost:8020/ beetx-subgraph",
         "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 beetx-subgraph",
@@ -18,7 +20,12 @@
         "prepare:mainnet": "mustache config/mainnet.json template.yaml > subgraph.yaml",
         "prepare:rinkeby": "mustache config/rinkeby.json template.yaml > subgraph.yaml",
         "prepare:fantom": "mustache config/fantom.json template.yaml > subgraph.yaml",
+        "prepare:fuji": "mustache config/fuji.json template.yaml > subgraph.yaml",
         "prepare:xdai": "."
     },
-    "dependencies": {}
+    "dependencies": {
+        "@graphprotocol/graph-cli": "^0.21.1",
+        "graph": "^0.2.0",
+        "mustache": "^4.2.0"
+    }
 }

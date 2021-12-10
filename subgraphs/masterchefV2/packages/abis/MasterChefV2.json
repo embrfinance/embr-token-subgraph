@@ -13,7 +13,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_embrPerBlock",
+        "name": "_embrPerSec",
         "type": "uint256"
       },
       {
@@ -357,7 +357,7 @@
   },
   {
     "inputs": [],
-    "name": "embrPerBlock",
+    "name": "embrPerSec",
     "outputs": [
       {
         "internalType": "uint256",
@@ -679,7 +679,7 @@
     "inputs": [
       {
         "internalType": "uint256",
-        "name": "_embrPerBlock",
+        "name": "_embrPerSec",
         "type": "uint256"
       }
     ],

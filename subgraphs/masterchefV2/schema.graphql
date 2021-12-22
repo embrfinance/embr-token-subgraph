@@ -63,3 +63,13 @@ type User @entity {
   timestamp: BigInt!
   block: BigInt!
 }
+
+type Migrations @entity {
+  id: ID!
+
+  unclaimed: BigInt!
+  claimed: BigInt!
+
+  timestamp: BigInt!
+  block: BigInt!
+}

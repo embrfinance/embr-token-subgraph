@@ -6,7 +6,7 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: EmbrToken
-    network: mainnet
+    network: avalanche
     source:
       address: "0xD81D45E7635400dDD9c028839e9a9eF479006B28"
       abi: EmbrToken
@@ -25,8 +25,64 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: transfer
   - kind: ethereum/contract
+    name: Governance
+    network: avalanche
+    source:
+      address: "0x42DC78Af4e3e9740FE0aA1a5Cb047DC82C620321"
+      abi: Governance
+      startBlock: 8414324
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/governance.ts
+      entities:
+        - PurposalMetadata
+        - Purposal
+      abis:
+        - name: Governance
+          file: packages/abis/Governance.json
+      eventHandlers:
+        - event: ProposalCreated(uint256,address,string)
+          handler: proposalCreated
+        - event: ProposalExecuted(uint256,address)
+          handler: proposalExecuted
+        - event: MinimumVotingPeriodChanged(uint256)
+          handler: minimumVoteChange
+  - kind: ethereum/contract
+    name: xEmbr
+    network: avalanche
+    source:
+      address: "0x520F8D37153Af5770e11C64761308C82cF3Bb981"
+      abi: xEmbr
+      startBlock: 8414324
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/xembr.ts
+      entities:
+        - xEmbr
+        - RewardToken
+      abis:
+        - name: xEmbr
+          file: packages/abis/xEmbr.json
+      eventHandlers:
+        - event: Staked(indexed address,uint256,uint256,indexed uint8,uint256)
+          handler: staked
+        - event: Withdraw(indexed address,uint256,uint256)
+          handler: withdraw
+        - event: RewardPaid(indexed address,indexed address,uint256)
+          handler: rewardPaid
+        - event: RewardsAdded(uint256[],address[])
+          handler: rewardsAdded
+        - event: LogTokenAddition(indexed uint256,indexed address)
+          handler: logTokenAddition
+        - event: LogTokenUpdate(indexed address,uint256,indexed address,uint256)
+          handler: logTokenUpdate
+  - kind: ethereum/contract
     name: MasterChefV2
-    network: mainnet
+    network: avalanche
     source:
       address: '0x1BCA50a8a832018d4BdF244846B61704C8EfD95a'
       abi: MasterChefV2
@@ -76,7 +132,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: CloneRewarderTime
-    network: mainnet
+    network: avalanche
     source:
       abi: CloneRewarderTime
     mapping:

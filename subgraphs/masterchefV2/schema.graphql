@@ -73,3 +73,132 @@ type Migrations @entity {
   timestamp: BigInt!
   block: BigInt!
 }
+
+
+type Governance @entity { 
+  id: ID!
+
+  purposalCount: BigInt!
+  purposals: [Purposal!] @derivedFrom(field: "governance")
+  quorumVotes: BigInt!
+
+  timestamp: BigInt!
+  block: BigInt! 
+}
+
+type Purposal @entity { 
+  id: ID!
+
+  proposer: XUser!
+  governance: Governance
+
+  index: BigInt!
+  title: String!
+  duration: BigInt!
+  startDate: BigInt!
+  endDate: BigInt!
+  state:  BigInt!
+  forVotes: BigInt!
+  againstVotes: BigInt!
+  metadata: String!
+  details: String!
+  executor: Bytes!
+  executed: Boolean!
+
+  timestamp: BigInt!
+  block: BigInt!    
+}
+
+type XEmbr @entity {
+  # Pool id concatenated with user address
+  id: ID!
+
+  tokenCount: BigInt!
+  activeTokenCount: BigInt!
+  staking: BigInt!
+
+  rewards: [RewardInfo!]! @derivedFrom(field: "xembr")
+  users: [XUser!] @derivedFrom(field: "xembr")
+
+  userCount: BigInt!
+
+  timestamp: BigInt!
+  block: BigInt!
+}
+
+type RewardInfo @entity { 
+  id: ID!
+
+  xembr: XEmbr
+
+  index: BigInt!
+  address: Bytes!
+
+  expiry: BigInt!
+  active: Boolean!
+
+  claimed: BigInt!
+  unclaimed: BigInt!
+
+  timestamp: BigInt!
+  block: BigInt!
+}
+
+type XUser @entity {
+  id: ID!
+
+  owner: Bytes!
+  xembr: XEmbr
+
+  locks: [Lock!] @derivedFrom(field: "owner")
+  rewards: [Reward!] @derivedFrom(field: "owner")
+  purposals: [Purposal!] @derivedFrom(field: "proposer")
+
+  staking: BigInt!
+  claimed: [Claimed!] @derivedFrom(field: "owner")
+
+  start: BigInt!
+  expiry: BigInt!
+
+  timestamp: BigInt!
+  block: BigInt!
+}
+
+type Claimed @entity { 
+  id: ID!
+  
+  owner: XUser
+  address: Bytes!
+
+  total: BigInt!
+
+  timestamp: BigInt!
+  block: BigInt!
+}
+
+type Reward @entity { 
+  id: ID!
+  
+  owner: XUser
+
+  index: BigInt!
+  address: Bytes!
+  
+  claimed: BigInt!
+
+  timestamp: BigInt!
+  block: BigInt!
+}
+
+type Lock @entity { 
+  id: ID!
+
+  owner: XUser
+
+  amount: BigInt!
+  action: Int!
+  locktime: BigInt!
+  
+  timestamp: BigInt!
+  block: BigInt!
+}
